@@ -5,7 +5,7 @@
 // @author       Macil
 // @include      http*://boards.4chan.org/*/*
 // @updateURL    https://raw.github.com/Macil/DiscordCounter/master/DiscordCounter.user.js
-// @version      1.0
+// @version      1.1
 // ==/UserScript==
 
 function addJQuery(callback) {
@@ -55,19 +55,29 @@ function dcmain() {
         var postnumber = posttag.attr("id").slice(1);
         queueMessage("Removed "+tagtype+" tag from post "+postnumber);
         var contenttag = $(".postMessage", posttag);
-        var messagetag = $("<div/>").insertBefore(contenttag).addClass("dcMessage");
+        var messagetag = $("<div/>").addClass("dcMessage").insertBefore(contenttag);
         messagetag.text("Discord Counter: Removed "+tagtype+" tag from this post.");
     }
 
-    function cleanPosts() {
-        var badtags = $(".post script, .post style, .post iframe");
+    function cleanPosts(context) {
+        var badtags = $(".post script, .post style, .post iframe", context);
         badtags.each(function() {
             discordHandler(this);
         });
     }
 
+    function setupListener() {
+        $(document).on("DOMNodeInserted", ".thread", function(event) {
+            var tag = event.target;
+            if($(tag).hasClass("postContainer")) {
+                cleanPosts(tag);
+            }
+        });
+    }
+
     prepareCSS();
-    cleanPosts();
+    setupListener();
+    cleanPosts(".thread");
 }
 
 addJQuery(dcmain);
