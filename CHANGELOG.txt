@@ -1,0 +1,3 @@
+(2012/06/01) - v1.0
+- Initial version. Works on page load only. If a discordmod post is loaded live
+  (such as by 4chan X) then the page will need to be refreshed to get fixed.
