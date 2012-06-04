@@ -5,7 +5,9 @@
 // @author       Macil
 // @include      http*://boards.4chan.org/*/*
 // @updateURL    https://raw.github.com/Macil/DiscordCounter/master/DiscordCounter.user.js
+// @homepage     http://macil.github.com/DiscordCounter/
 // @version      1.1
+// @icon         http://i.imgur.com/aUTYg.png
 // ==/UserScript==
 
 function addJQuery(callback) {
