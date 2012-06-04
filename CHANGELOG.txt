@@ -1,3 +1,7 @@
+(2012/06/01) - v1.2
+- Removed alert dialogs. Posts modified by Discord Counter will still be
+  marked.
+
 (2012/06/01) - v1.1
 - Now works with new posts loaded by 4chan X.
 
