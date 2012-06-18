@@ -1,3 +1,7 @@
+(2012/06/18) - v1.3
+- Add undo button to re-add removed tags. Refreshing the page will re-hide
+  them.
+
 (2012/06/01) - v1.2
 - Removed alert dialogs. Posts modified by Discord Counter will still be
   marked.
