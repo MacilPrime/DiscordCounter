@@ -25,7 +25,7 @@ function dcmain() {
     function prepareCSS() {
         var dcCSS = $("<style/>");
         dcCSS.html(".dcMessage { color: red; }");
-        dcCSS.appendTo(document.body);
+        dcCSS.appendTo(document.head);
     }
 
     function discordHandler(tag) {
@@ -33,9 +33,20 @@ function dcmain() {
         var posttag = $(tag).closest(".post");
         $(tag).remove();
         var postnumber = posttag.attr("id").slice(1);
-        var contenttag = $(".postMessage", posttag);
+        var contenttag = $(".postMessage", posttag).first();
+
         var messagetag = $("<div/>").addClass("dcMessage").insertBefore(contenttag);
-        messagetag.text("Discord Counter: Removed "+tagtype+" tag from this post.");
+        messagetag.text("Discord Counter: Removed "+tagtype+" tag from this post. ");
+
+        $("<a/>")
+            .addClass("dcUndo")
+            .text("Undo")
+            .attr("href","javascript:;")
+            .click(function(event) {
+                $(tag).appendTo(contenttag);
+                messagetag.remove();
+            })
+            .appendTo(messagetag);
     }
 
     function cleanPosts(context) {
