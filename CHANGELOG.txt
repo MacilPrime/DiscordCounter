@@ -1,3 +1,6 @@
+(2012/06/26) - v1.4
+- Includes jQuery source, loads much faster now.
+
 (2012/06/18) - v1.3
 - Add undo button to re-add removed tags. Refreshing the page will re-hide
   them.
