@@ -18,6 +18,7 @@
 function dcmain() {
     function prepareCSS() {
         var $dcCSS = $("<style/>");
+        $dcCSS.attr("type", "text/css");
         $dcCSS.html(".dcMessage { color: red; }");
         $dcCSS.appendTo(document.head);
     }
