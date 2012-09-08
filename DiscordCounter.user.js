@@ -6,7 +6,7 @@
 // @include      http*://boards.4chan.org/*/*
 // @updateURL    https://raw.github.com/Macil/DiscordCounter/master/DiscordCounter.user.js
 // @homepage     http://macil.github.com/DiscordCounter/
-// @version      1.4
+// @version      1.5
 // @icon         http://i.imgur.com/aUTYg.png
 // ==/UserScript==
 
@@ -17,35 +17,36 @@
 
 function dcmain() {
     function prepareCSS() {
-        var dcCSS = $("<style/>");
-        dcCSS.html(".dcMessage { color: red; }");
-        dcCSS.appendTo(document.head);
+        var $dcCSS = $("<style/>");
+        $dcCSS.html(".dcMessage { color: red; }");
+        $dcCSS.appendTo(document.head);
     }
 
     function discordHandler(tag) {
         var tagtype = tag.nodeName.toLowerCase();
-        var posttag = $(tag).closest(".post");
+        var $posttag = $(tag).closest(".post");
         $(tag).remove();
-        var postnumber = posttag.attr("id").slice(1);
-        var contenttag = $(".postMessage", posttag).first();
+        var postnumber = $posttag.attr("id").slice(1);
+        var $contenttag = $(".postMessage", $posttag).first();
 
-        var messagetag = $("<div/>").addClass("dcMessage").insertBefore(contenttag);
-        messagetag.text("Discord Counter: Removed "+tagtype+" tag from this post. ");
+        var $messagetag = $("<div/>").addClass("dcMessage").insertBefore($contenttag);
+        $messagetag.text("Discord Counter: Removed "+tagtype+" tag from this post. ");
+        console.log("Discord Counter: Removed "+tagtype+" tag from post "+postnumber+".");
 
         $("<a/>")
             .addClass("dcUndo")
             .text("Undo")
             .attr("href","javascript:;")
             .click(function(event) {
-                $(tag).appendTo(contenttag);
-                messagetag.remove();
+                $(tag).appendTo($contenttag);
+                $messagetag.remove();
             })
-            .appendTo(messagetag);
+            .appendTo($messagetag);
     }
 
     function cleanPosts(context) {
-        var badtags = $(".post script, .post style, .post iframe", context);
-        badtags.each(function() {
+        var $badtags = $(".post", context).find("script, style, iframe");
+        $badtags.each(function() {
             discordHandler(this);
         });
     }
