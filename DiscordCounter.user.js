@@ -45,8 +45,22 @@ function dcmain() {
             .appendTo($messagetag);
     }
 
+    function findEvilTags($tag) {
+        var $ret = $();
+        $tag.children().each(function() {
+            var $child = $(this);
+            if ($child.is('script, style, iframe') ||
+		$child.css('position') == 'fixed') {
+                $ret = $ret.add($child);
+            } else {
+                $ret = $ret.add( findEvilTags($child) );
+            }
+        });
+        return $ret;
+    }
+
     function cleanPosts(context) {
-        var $badtags = $(".post", context).find("script, style, iframe");
+        var $badtags = findEvilTags($(".post", context));
         $badtags.each(function() {
             discordHandler(this);
         });
