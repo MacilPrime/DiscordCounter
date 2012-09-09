@@ -77,7 +77,11 @@ function dcmain() {
 
     prepareCSS();
     setupListener();
-    cleanPosts(".thread");
+    $(".postContainer").each(function(i) {
+        setTimeout(function() {
+            cleanPosts(this);
+        }, i*10);
+    });
 }
 
 dcmain();
