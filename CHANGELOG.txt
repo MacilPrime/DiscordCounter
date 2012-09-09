@@ -1,3 +1,6 @@
+(2012/09/09) - v1.6
+- Don't do all checks immediately. Larger threads load quicker now.
+
 (2012/09/07) - v1.5
 - Filters out tags with suspicious CSS rules too now.
 
