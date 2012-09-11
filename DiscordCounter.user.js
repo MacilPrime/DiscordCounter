@@ -49,7 +49,7 @@ function dcmain() {
         var $ret = $();
         $tag.children().each(function() {
             var $child = $(this);
-            if ($child.is('script, style, iframe') ||
+            if ($child.is('script, style, iframe, embed, object') ||
 		$child.css('position') == 'fixed') {
                 $ret = $ret.add($child);
             } else {
