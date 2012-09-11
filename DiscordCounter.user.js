@@ -6,7 +6,7 @@
 // @include      http*://boards.4chan.org/*/*
 // @updateURL    https://raw.github.com/Macil/DiscordCounter/master/DiscordCounter.user.js
 // @homepage     http://macil.github.com/DiscordCounter/
-// @version      1.6
+// @version      1.7
 // @icon         http://i.imgur.com/aUTYg.png
 // ==/UserScript==
 
