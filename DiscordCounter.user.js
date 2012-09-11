@@ -49,6 +49,7 @@ function dcmain() {
         var $ret = $();
         $tag.children().each(function() {
             var $child = $(this);
+
             if ($child.is('script, style, iframe, embed, object') ||
 		$child.css('position') == 'fixed') {
                 $ret = $ret.add($child);
@@ -78,9 +79,12 @@ function dcmain() {
     prepareCSS();
     setupListener();
     $(".postContainer").each(function(i) {
-        setTimeout(function() {
-            cleanPosts(this);
-        }, i*10);
+	var id = $(this).attr("id");
+	if (id) {
+            setTimeout(function() {
+		cleanPosts($("#"+id));
+            }, i*10);
+	}
     });
 }
 
