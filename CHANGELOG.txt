@@ -1,3 +1,7 @@
+(2013/04/27) - v1.8
+- Fix jQuery conflict issues.
+- Upgrade jQuery to v2.0.0.
+
 (2012/09/11) - v1.7
 - Fix bug introduced in v1.6 that broke the script.
 - Block embed and object tags too.
